@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "title": "Someone Is Texting From My Number",
+  "durationSeconds": 36,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "11:52",
+  "localUser": { "id": "me", "displayName": "Me" },
+  "contacts": [
+    { "id": "maya", "displayName": "Maya", "color": "#BF5AF2" },
+    { "id": "unknown", "displayName": "Unknown", "color": "#8E8E93" }
+  ],
+  "conversations": [
+    { "id": "maya-thread", "type": "direct", "participants": ["maya"], "title": "Maya" },
+    { "id": "unknown-thread", "type": "direct", "participants": ["unknown"], "title": "Unknown" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "maya-thread", "senderId": "maya", "text": "Did you just text me from your number?", "revealAtMs": 1000, "timestamp": "Today 11:52 PM" },
+    { "id": "m02", "conversationId": "maya-thread", "senderId": "me", "text": "No. I've been asleep since 10.", "revealAtMs": 2800 },
+    { "id": "m03", "conversationId": "maya-thread", "senderId": "maya", "text": "It says: \"Stop looking at my phone, Maya. I can see you.\"", "revealAtMs": 4800 },
+    { "id": "m04", "conversationId": "maya-thread", "senderId": "me", "text": "Send me a screenshot.", "revealAtMs": 6800 },
+    { "id": "m05", "conversationId": "maya-thread", "senderId": "maya", "text": "I did. Then the message vanished. Nothing in your sent folder either.", "revealAtMs": 8800 },
+    { "id": "m06", "conversationId": "maya-thread", "senderId": "me", "text": "That's not possible.", "revealAtMs": 11200 },
+    { "id": "m07", "conversationId": "maya-thread", "senderId": "maya", "text": "Check your sent messages. Look at 2:14 AM.", "revealAtMs": 13000 },
+    { "id": "m08", "conversationId": "maya-thread", "senderId": "me", "text": "There's a thread to someone called Unknown. I never wrote that.", "revealAtMs": 15200 },
+    { "id": "m09", "conversationId": "unknown-thread", "senderId": "unknown", "text": "You found it. Good.", "revealAtMs": 18000 },
+    { "id": "m10", "conversationId": "unknown-thread", "senderId": "me", "text": "Who is this?", "revealAtMs": 20000 },
+    { "id": "m11", "conversationId": "unknown-thread", "senderId": "unknown", "text": "Stop reading my messages.", "revealAtMs": 22000 },
+    { "id": "m12", "conversationId": "unknown-thread", "senderId": "unknown", "text": "Turn around slowly.", "revealAtMs": 24400 },
+    { "id": "m13", "conversationId": "unknown-thread", "senderId": "me", "text": "Hello?", "revealAtMs": 27000 },
+    { "id": "m14", "conversationId": "unknown-thread", "senderId": "unknown", "text": "Your phone is still warm, isn't it?", "revealAtMs": 29400 }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "meta": {
+    "premise": "A person discovers their number has been messaging someone at night.",
+    "genre": "thriller",
+    "tone": "tense, slow-burn",
+    "endingStyle": "cliffhanger",
+    "language": "en"
+  }
+}

@@ -1,0 +1,103 @@
+@font-face { font-family: 'ChatShortsInter'; src: url('../../assets/fonts/Inter-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+@font-face { font-family: 'ChatShortsInter'; src: url('../../assets/fonts/Inter-Medium.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: block; }
+@font-face { font-family: 'ChatShortsInter'; src: url('../../assets/fonts/Inter-SemiBold.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: block; }
+
+/* All sizes below are overwritten from METRICS by chat.js; these are fallbacks only. */
+:root {
+  --font: 'ChatShortsInter', 'Inter', Arial, sans-serif;
+  --frame-x: 0px; --frame-y: 0px; --frame-w: 1080px; --frame-h: 1920px; --frame-radius: 0px;
+  --status-h: 96px; --header-h: 262px; --input-h: 150px;
+  --bubble-font: 46px; --bubble-lh: 58px; --bubble-px: 30px; --bubble-py: 18px;
+  --side-pad: 34px; --avatar: 76px; --avatar-slot: 92px; --header-avatar: 120px;
+  --name-font: 30px; --name-h: 40px; --ts-font: 34px; --ts-h: 72px;
+  --screen-bg: #000; --recv-bubble: #26262A; --recv-text: #fff; --send-bubble: #0A84FF; --send-text: #fff;
+  --header-text: #fff; --sub-text: #8E8E93; --input-bg: #000; --input-field: #1C1C1E; --input-border: #3A3A3C; --placeholder: #8E8E93;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: transparent; }
+body { font-family: var(--font); -webkit-font-smoothing: antialiased; }
+
+#canvas { position: absolute; inset: 0; width: 1080px; height: 1920px; background: transparent; }
+
+#screen {
+  position: absolute; left: var(--frame-x); top: var(--frame-y);
+  width: var(--frame-w); height: var(--frame-h);
+  border-radius: var(--frame-radius); overflow: hidden;
+  background: var(--screen-bg);
+}
+
+#status {
+  position: absolute; top: 0; left: 0; right: 0; height: var(--status-h);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 56px; color: var(--header-text); font-weight: 600; font-size: 40px;
+}
+#status-time { letter-spacing: -0.5px; }
+.status-icons { width: 150px; height: 34px; color: var(--header-text); }
+
+#header {
+  position: absolute; top: var(--status-h); left: 0; right: 0; height: var(--header-h);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  border-bottom: 2px solid var(--divider, #1C1C1E); color: var(--header-text);
+}
+#header-back { position: absolute; left: 36px; top: 30px; font-size: 80px; line-height: 1; color: var(--send-bubble); }
+#header-avatar { position: relative; flex: none; width: var(--header-avatar); height: var(--header-avatar); }
+#header-title { font-size: 40px; font-weight: 500; line-height: 48px; }
+
+#viewport {
+  position: absolute; left: 0; right: 0; top: calc(var(--status-h) + var(--header-h));
+  height: var(--viewport-h, 1452px); overflow: hidden;
+}
+#content { position: absolute; left: 0; top: 0; width: 100%; will-change: transform; }
+
+.row { position: absolute; left: 0; width: 100%; }
+.msg { position: absolute; left: 0; width: 100%; }
+.bubble {
+  position: absolute; display: block; overflow: hidden;
+  padding: var(--bubble-py) var(--bubble-px);
+  font-size: var(--bubble-font); line-height: var(--bubble-lh);
+  white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal;
+}
+.bubble.recv { background: var(--recv-bubble); color: var(--recv-text); }
+.bubble.send { background: var(--send-bubble); color: var(--send-text); }
+.bubble-text { display: block; }
+
+.name {
+  position: absolute; font-size: var(--name-font); line-height: var(--name-h); height: var(--name-h);
+  color: var(--sub-text); white-space: nowrap;
+}
+.timestamp {
+  position: absolute; left: 0; width: 100%; height: var(--ts-h);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--ts-font); line-height: var(--ts-h); color: var(--sub-text); font-weight: 500;
+}
+.avatar {
+  position: absolute; border-radius: 50%; overflow: hidden; width: var(--avatar); height: var(--avatar);
+  display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 600;
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.avatar span { font-size: calc(var(--avatar) * 0.42); line-height: 1; }
+
+#input {
+  position: absolute; left: 0; right: 0; bottom: 0; height: var(--input-h);
+  display: flex; align-items: center; gap: 22px; padding: 0 30px 18px;
+  background: var(--input-bg); border-top: 2px solid var(--divider, #1C1C1E);
+}
+#input-plus {
+  width: 84px; height: 84px; border-radius: 50%; border: 2px solid var(--input-border);
+  color: var(--placeholder); font-size: 56px; line-height: 78px; text-align: center; flex: none;
+}
+#input-field {
+  flex: 1; height: 84px; border-radius: 42px; border: 2px solid var(--input-border);
+  background: var(--input-field); display: flex; align-items: center; padding: 0 34px;
+  font-size: 36px; color: var(--placeholder);
+}
+
+#measure {
+  position: absolute; left: -10000px; top: 0; width: 2000px;
+  font-family: var(--font); font-size: var(--bubble-font); line-height: var(--bubble-lh);
+}
+#measure .m-text {
+  display: inline-block; max-width: var(--m-max); white-space: pre-wrap; overflow-wrap: anywhere; word-break: normal;
+  font-size: var(--bubble-font); line-height: var(--bubble-lh); vertical-align: top;
+}
