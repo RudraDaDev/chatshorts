@@ -8,11 +8,12 @@
     "chatshorts": "src/cli.js"
   },
   "scripts": {
-    "test": "node --test test/validate.test.js test/layout.test.js test/viewport.test.js test/measure.test.js test/browser.test.js test/e2e.test.js",
+    "test": "node --test test/validate.test.js test/layout.test.js test/viewport.test.js test/measure.test.js test/browser.test.js test/tts.test.js test/e2e.test.js",
     "test:unit": "node --test test/validate.test.js test/layout.test.js test/viewport.test.js test/measure.test.js",
     "validate": "node src/cli.js validate",
     "generate": "node src/cli.js generate",
-    "assets": "node src/cli.js assets"
+    "assets": "node src/cli.js assets",
+    "tts:assets": "node src/cli.js tts-assets"
   },
   "engines": {
     "node": ">=22.13"
@@ -23,6 +24,8 @@
     "@ffprobe-installer/ffprobe": "^2.1.2",
     "@fontsource/inter": "^5.3.0",
     "ajv": "^8.20.0",
+    "onnxruntime-node": "^1.30.0",
+    "phonemizer": "^1.2.1",
     "puppeteer-core": "^25.13.0"
   },
   "optionalDependencies": {

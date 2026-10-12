@@ -14,6 +14,8 @@ Requires Node.js 22.13 or newer.
 ```bash
 npm install
 npm run assets          # optional: build the sound cues into assets/generated/sfx/
+npm run tts:assets      # optional, for narration: download the Kokoro voice model (about 120 MB)
+node src/cli.js generate --story stories/examples/someone-using-my-number.json --narrate   # render with voice-over
 node src/cli.js help
 ```
 
@@ -91,6 +93,7 @@ resume after a failed encode, and checks that an invalid story fails and records
 
 ## Assets and licensing
 
+- Narration uses Kokoro-82M (Apache-2.0), run locally on CPU with onnxruntime. Its model and voice files are downloaded on demand to `assets/models/` and are not stored in Git. Everything else is in [assets/LICENSES.md](assets/LICENSES.md).
 - The Inter font (OFL) is bundled. Most sound cues and the default music bed are synthesized
   locally. The `bruh` and `rizz` cues are short spoken-word files generated with the platform
   TTS voice and committed under `assets/sfx/voice/`. The project has no licensed recordings. See

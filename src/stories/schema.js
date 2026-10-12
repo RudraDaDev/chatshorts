@@ -1,8 +1,11 @@
+import { ENGLISH_VOICES } from '../tts/voices.js';
+
 // JSON Schema for the story script. This is the structural contract; semantic
 // rules (references, ordering, timing) live in validate.js.
 
 const id = { type: 'string', pattern: '^[a-z0-9][a-z0-9-]{0,39}$', minLength: 1, maxLength: 40 };
 const displayName = { type: 'string', minLength: 1, maxLength: 40 };
+const voice = { enum: [...ENGLISH_VOICES] };
 
 export const storySchema = {
   $id: 'chatshorts.story.v1',
@@ -20,7 +23,7 @@ export const storySchema = {
       type: 'object',
       additionalProperties: false,
       required: ['id', 'displayName'],
-      properties: { id, displayName, avatar: { type: 'string', minLength: 1 } },
+      properties: { id, displayName, avatar: { type: 'string', minLength: 1 }, voice },
     },
     contacts: {
       type: 'array', minItems: 1, maxItems: 12,
@@ -33,6 +36,7 @@ export const storySchema = {
           displayName,
           avatar: { type: 'string', minLength: 1 },
           color: { type: 'string', pattern: '^#[0-9a-fA-F]{6}$' },
+          voice,
         },
       },
     },
@@ -64,7 +68,18 @@ export const storySchema = {
           revealAtMs: { type: 'integer', minimum: 0, maximum: 180000 },
           timestamp: { type: 'string', minLength: 1, maxLength: 40 },
           sound: { type: 'string', minLength: 1, maxLength: 20 },
+          // Spoken line for narration. Defaults to text. A string speaks that instead; false is silent.
+          narration: { anyOf: [{ type: 'string', minLength: 1, maxLength: 400 }, { const: false }] },
         },
+      },
+    },
+    narration: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        enabled: { type: 'boolean' },
+        voice,
+        speed: { type: 'number', minimum: 0.7, maximum: 1.3 },
       },
     },
     audio: {

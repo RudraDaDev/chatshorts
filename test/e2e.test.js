@@ -26,14 +26,14 @@ test('example story renders to a valid MP4 and passes QA', async () => {
   const config = testConfig('example');
   const store = await JobStore.open(config.dbPath);
   try {
-    const { jobId } = await createJob({ config, store, source: EXAMPLE, options: { keepTemp: false } });
+    const { jobId } = await createJob({ config, store, source: EXAMPLE, options: { keepTemp: false, narrate: false } });
     const { outputPath } = await runJob({ config, store, jobId, log: silentLog });
     assert.ok(fs.existsSync(outputPath));
     assert.ok(fs.existsSync(outputPath.replace(/\.mp4$/, '.report.json')));
     const job = store.getJob(jobId);
     assert.equal(job.status, 'completed');
     const stages = store.stages(jobId).map((s) => `${s.name}:${s.status}`);
-    assert.deepEqual(stages.sort(), ['encode:done', 'finalize:done', 'layout:done', 'qa:done', 'render:done', 'validate:done']);
+    assert.deepEqual(stages.sort(), ['encode:done', 'finalize:done', 'layout:done', 'narrate:done', 'qa:done', 'render:done', 'validate:done']);
     // The job's frames are cleaned up after success (keepTemp false).
     assert.equal(fs.existsSync(path.join(config.tempDir, jobId, 'frames')), false);
   } finally {
@@ -113,3 +113,23 @@ test('a broken story fails validation and records a failed job', async () => {
   }
 });
 
+
+const narrationReady = fs.existsSync(path.resolve('assets/models/kokoro/model_quantized.onnx'));
+test('narrated story: lines are timed to speech and QA passes', { skip: narrationReady ? false : 'run `node src/cli.js tts-assets` to enable' }, async () => {
+  const config = testConfig('narrated');
+  const store = await JobStore.open(config.dbPath);
+  try {
+    const { jobId } = await createJob({ config, store, source: EXAMPLE, options: { keepTemp: true, narrate: true, output: path.join(config.outputDir, 'narrated.mp4') } });
+    const { outputPath } = await runJob({ config, store, jobId, log: silentLog });
+    const narration = JSON.parse(fs.readFileSync(path.join(config.tempDir, jobId, 'narration.json'), 'utf8'));
+    assert.equal(narration.enabled, true);
+    assert.ok(narration.clips.every((c) => c.revealMs <= (c.startMs ?? c.revealMs)));
+    const timed = JSON.parse(fs.readFileSync(path.join(config.tempDir, jobId, 'story.timed.json'), 'utf8'));
+    const qa = JSON.parse(fs.readFileSync(path.join(config.tempDir, jobId, 'qa.json'), 'utf8'));
+    assert.equal(qa.ok, true, qa.failed.join('; '));
+    assert.equal(fs.existsSync(outputPath), true);
+    assert.equal(Math.round(timed.durationSeconds * 1000), Math.round(JSON.parse(fs.readFileSync(path.join(config.tempDir, jobId, 'render-manifest.json'), 'utf8')).durationMs));
+  } finally {
+    store.close();
+  }
+});

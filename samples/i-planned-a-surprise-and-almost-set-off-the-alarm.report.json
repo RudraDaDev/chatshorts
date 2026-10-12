@@ -1,40 +1,45 @@
 {
-  "jobId": "job-20261012132321-2cc170",
+  "jobId": "job-20261012141226-a8ab91",
   "title": "I Planned A Surprise And Almost Set Off The Alarm",
-  "output": "/home/user/chatshorts/output/i-planned-a-surprise-and-almost-set-off-the-alarm-2cc170.mp4",
-  "durationSeconds": 30,
+  "output": "/home/user/chatshorts/output/i-planned-a-surprise-and-almost-set-off-the-alarm-a8ab91.mp4",
+  "durationSeconds": 47.9,
   "resolution": "1080x1920",
   "fps": 30,
   "stages": [
     {
       "name": "encode",
       "status": "done",
-      "durationMs": 14709
+      "durationMs": 23032
     },
     {
       "name": "layout",
       "status": "done",
-      "durationMs": 162
+      "durationMs": 166
+    },
+    {
+      "name": "narrate",
+      "status": "done",
+      "durationMs": 54298
     },
     {
       "name": "qa",
       "status": "done",
-      "durationMs": 940
+      "durationMs": 1439
     },
     {
       "name": "render",
       "status": "done",
-      "durationMs": 12939
+      "durationMs": 11688
     },
     {
       "name": "validate",
       "status": "done",
-      "durationMs": 4
+      "durationMs": 3
     }
   ],
-  "totalStageMs": 28754,
-  "renderedStills": 135,
-  "frames": 900,
+  "totalStageMs": 90626,
+  "renderedStills": 125,
+  "frames": 1437,
   "validation": {
     "warnings": []
   },
@@ -52,5 +57,5 @@
       "costUsd": 0
     }
   ],
-  "completedAt": "2026-10-12T13:23:50.669Z"
+  "completedAt": "2026-10-12T14:13:56.751Z"
 }

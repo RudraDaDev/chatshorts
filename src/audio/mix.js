@@ -17,11 +17,12 @@ const MERGE_GROUP = 16; // channels per amerge stage stay well under FFmpeg's ch
  * @param {string} args.storyDir     directory used to resolve audio.music
  * @param {Record<string,string>} args.cues  cue name -> absolute WAV path (see ensureCues)
  * @param {number} args.firstInput   index of the first input this plan adds
+ * @param {{ file: string, startMs: number }[]} [args.narration]  spoken clips (see src/tts)
  * @param {number} args.durationMs
  * @param {'full'|'none'} args.mode  'none' produces silence (--no-audio)
  * @returns {{ inputs: string[], parts: string[], outLabel: string, events: number, music: string }}
  */
-export function buildAudioPlan({ story, storyDir, cues, firstInput, durationMs, mode = 'full' }) {
+export function buildAudioPlan({ story, storyDir, cues, narration = [], firstInput, durationMs, mode = 'full' }) {
   const dur = (durationMs / 1000).toFixed(3);
   const inputs = [];
   let idx = firstInput;
@@ -68,6 +69,19 @@ export function buildAudioPlan({ story, storyDir, cues, firstInput, durationMs, 
       idx += 1;
       events += 1;
     }
+  }
+
+  // Spoken lines: already peak-normalized in src/tts/clips.js, so no extra gain here.
+  for (const clip of narration) {
+    const ms = Math.round(clip.startMs);
+    inputs.push('-i', clip.file);
+    parts.push(
+      `[${idx}:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,` +
+        `adelay=${ms}|${ms},apad[v${events}]`,
+    );
+    labels.push(`[v${events}]`);
+    idx += 1;
+    events += 1;
   }
 
   const sum = sumTree(labels, parts);

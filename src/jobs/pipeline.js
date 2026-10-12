@@ -10,16 +10,22 @@ import { launchBrowser } from '../renderer/browser.js';
 import { openChatPage, renderStates } from '../renderer/scenes.js';
 import { resolveBinaries, encodeVideo, concatList } from '../renderer/ffmpeg.js';
 import { ensureCues } from '../audio/assets.js';
+import { KokoroEngine } from '../tts/engine.js';
+import { renderClips } from '../tts/clips.js';
+import { planNarration, retimeForNarration, NARRATION_TIMING } from '../tts/retime.js';
+import { DEFAULT_VOICE } from '../tts/voices.js';
+import { validateStory as revalidate } from '../stories/validate.js';
 import { buildAudioPlan } from '../audio/mix.js';
 import { qaOutput } from '../qa/validate-output.js';
 
 // Stages run in order. Each stage writes its artifact into the job's work dir,
 // so a failed job resumes at the first unfinished stage without regenerating
 // the story or re-rendering finished frames.
-export const STAGES = ['validate', 'layout', 'render', 'encode', 'qa', 'finalize'];
+export const STAGES = ['validate', 'narrate', 'layout', 'render', 'encode', 'qa', 'finalize'];
 
 const STATUS_FOR_STAGE = {
   validate: 'validating',
+  narrate: 'validating',
   layout: 'validating',
   render: 'rendering',
   encode: 'encoding',
@@ -29,6 +35,7 @@ const STATUS_FOR_STAGE = {
 
 const ARTIFACTS = {
   validate: ['story.json', 'validation.json'],
+  narrate: ['story.timed.json', 'narration.json'],
   layout: ['layout.json'],
   render: ['render-manifest.json', 'timeline.json'],
   encode: ['encoded.mp4'],
@@ -140,9 +147,42 @@ const STAGE_FNS = {
     };
   },
 
-  async layout(ctx) {
+  // Narration: speak each line with Kokoro, then retime the story so each bubble
+  // appears when its voice line starts. Without narration, the timed story is a copy.
+  async narrate(ctx) {
     const { config, workDir, job } = ctx;
     const story = readJson(path.join(workDir, 'story.json'));
+    // --no-audio means a silent render with the authored timing, so narration is skipped too.
+    const enabled = !ctx.options.noAudio && (ctx.options.narrate ?? story.narration?.enabled ?? false);
+    if (!enabled) {
+      writeJson(path.join(workDir, 'story.timed.json'), story);
+      writeJson(path.join(workDir, 'narration.json'), { enabled: false, clips: [] });
+      return { narration: 'off' };
+    }
+    const lines = planNarration(story, { defaultVoice: DEFAULT_VOICE, defaultSpeed: 1 }).filter((l) => l.text !== null);
+    ctx.tts ??= await KokoroEngine.load({ modelDir: config.ttsModelDir });
+    const clips = await renderClips({ engine: ctx.tts, lines, cacheDir: config.ttsCacheDir, log: ctx.log });
+    const clipMs = new Map([...clips].map(([id, c]) => [id, c.durationMs]));
+    const { story: timed, timeline } = retimeForNarration(story, clipMs, NARRATION_TIMING);
+    const check = revalidate(timed, { storyDir: job.storyDir });
+    if (!check.ok) throw new Error(`narrated timing failed validation:\n  - ${check.errors.join('\n  - ')}`);
+    const rows = timeline.map((row) => {
+      const c = clips.get(row.messageId);
+      return { ...row, voice: lines.find((l) => l.id === row.messageId).voice, file: c ? c.file : null, cached: c ? c.cached : null };
+    });
+    writeJson(path.join(workDir, 'story.timed.json'), timed);
+    writeJson(path.join(workDir, 'narration.json'), { enabled: true, clips: rows });
+    return {
+      lines: clips.size,
+      cached: [...clips.values()].filter((c) => c.cached).length,
+      voices: [...new Set(rows.map((r) => r.voice).filter(Boolean))].length,
+      durationSeconds: timed.durationSeconds,
+    };
+  },
+
+  async layout(ctx) {
+    const { config, workDir, job } = ctx;
+    const story = readJson(path.join(workDir, 'story.timed.json'));
     const contacts = resolveContacts(story, job.storyDir);
     const conversations = resolveConversations(story, contacts);
     const canvas = { width: config.width, height: config.height };
@@ -161,7 +201,7 @@ const STAGE_FNS = {
 
   async render(ctx) {
     const { config, workDir } = ctx;
-    const story = readJson(path.join(workDir, 'story.json'));
+    const story = readJson(path.join(workDir, 'story.timed.json'));
     const layout = readJson(path.join(workDir, 'layout.json'));
     const durationMs = Math.round(story.durationSeconds * 1000);
     const timeline = buildTimeline(layout.index, { fps: config.fps, durationMs });
@@ -197,7 +237,8 @@ const STAGE_FNS = {
 
   async encode(ctx) {
     const { config, workDir, job, options } = ctx;
-    const story = readJson(path.join(workDir, 'story.json'));
+    const story = readJson(path.join(workDir, 'story.timed.json'));
+    const narration = readJson(path.join(workDir, 'narration.json'));
     const manifest = readJson(path.join(workDir, 'render-manifest.json'));
     const durationMs = manifest.durationMs;
     const listFile = path.join(workDir, 'frames.txt');
@@ -210,10 +251,14 @@ const STAGE_FNS = {
     const background = story.background
       ? { file: path.resolve(job.storyDir, story.background.video), dim: story.background.dim }
       : null;
+    const spoken = narration.enabled && !noAudio
+      ? narration.clips.filter((r) => r.file).map((r) => ({ file: r.file, startMs: r.startMs }))
+      : [];
     const audioPlan = buildAudioPlan({
       story,
       storyDir: job.storyDir,
       cues,
+      narration: spoken,
       firstInput: background ? 2 : 1,
       durationMs,
       mode: noAudio ? 'none' : 'full',
@@ -231,7 +276,7 @@ const STAGE_FNS = {
       audioPlan,
       cwd: workDir,
     });
-    return { bytes: fs.statSync(out).size, soundEffects: audioPlan.events, music: audioPlan.music };
+    return { bytes: fs.statSync(out).size, soundEffects: audioPlan.events - spoken.length, narrationClips: spoken.length, music: audioPlan.music };
   },
 
   async qa(ctx) {
@@ -252,7 +297,7 @@ const STAGE_FNS = {
 
   async finalize(ctx) {
     const { config, workDir, store, job } = ctx;
-    const story = readJson(path.join(workDir, 'story.json'));
+    const story = readJson(path.join(workDir, 'story.timed.json'));
     const validation = readJson(path.join(workDir, 'validation.json'));
     const qa = readJson(path.join(workDir, 'qa.json'));
     const manifest = readJson(path.join(workDir, 'render-manifest.json'));

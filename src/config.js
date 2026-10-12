@@ -44,6 +44,8 @@ export function loadConfig(env = process.env) {
     dbPath: path.resolve(ROOT, merged.CHATSHORTS_DB || path.join(tempDir, 'chatshorts.sqlite')),
     templateDir: path.join(ROOT, 'templates', 'imessage'),
     sfxDir: path.resolve(ROOT, merged.CHATSHORTS_SFX_DIR || path.join('assets', 'generated', 'sfx')),
+    ttsModelDir: path.resolve(ROOT, merged.CHATSHORTS_TTS_MODEL_DIR || path.join('assets', 'models', 'kokoro')),
+    ttsCacheDir: path.join(ROOT, 'assets', 'generated', 'tts'),
     chromePath: merged.CHROME_PATH || null,
     ffmpegPath: merged.FFMPEG_PATH || null,
     ffprobePath: merged.FFPROBE_PATH || null,

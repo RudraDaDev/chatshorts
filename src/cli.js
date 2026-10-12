@@ -10,17 +10,21 @@ import { createJob, runJob } from './jobs/pipeline.js';
 import { resolveBinaries, ffprobeJson } from './renderer/ffmpeg.js';
 import { ensureCues } from './audio/assets.js';
 import { qaOutput } from './qa/validate-output.js';
+import { fetchKokoroAssets } from './tts/fetch-model.js';
+import { ENGLISH_VOICES } from './tts/voices.js';
 
 const USAGE = `ChatShorts: render fictional iMessage-style Shorts from a JSON story script.
 
 Usage:
   node src/cli.js validate <story.json|->          Check a story script (no rendering)
   node src/cli.js generate --story <story.json|->  Render a Short (validate, layout, render, encode, QA)
-        [--output output/name.mp4] [--keep-temp] [--no-audio]
+        [--output output/name.mp4] [--keep-temp] [--no-audio] [--narrate | --no-narrate]
   node src/cli.js resume <jobId>                   Continue a failed/interrupted job from its failed stage
   node src/cli.js jobs [--limit 20]                List recent jobs
   node src/cli.js qa <video.mp4>                   Media QA on any MP4 (ffprobe, decode, audio levels)
   node src/cli.js assets                           Build the sound cues (assets/generated/sfx)
+  node src/cli.js tts-assets                       Download the Kokoro voice model (assets/models/kokoro, about 120 MB)
+  node src/cli.js voices                           List the narration voices
 
 Pass "-" as the story path to read the JSON from stdin.
 `;
@@ -104,6 +108,7 @@ async function cmdGenerate(config, { flags }) {
         output: typeof flags.output === 'string' ? flags.output : undefined,
         keepTemp: Boolean(flags['keep-temp']),
         noAudio: Boolean(flags['no-audio']),
+        narrate: flags.narrate ? true : flags['no-narrate'] ? false : undefined,
       },
     });
     console.log(`job ${jobId} (story provider: ${provider.name})`);
@@ -188,6 +193,22 @@ async function cmdAssets(config) {
   return 0;
 }
 
+async function cmdTtsAssets(config) {
+  const log = makeLogger();
+  const { model, voices } = await fetchKokoroAssets({ dir: config.ttsModelDir, log });
+  console.log(`model:  ${model}\nvoices: ${voices} files in ${path.join(config.ttsModelDir, 'voices')}`);
+  return 0;
+}
+
+function cmdVoices() {
+  for (const v of ENGLISH_VOICES) {
+    const accent = v.charAt(0) === 'b' ? 'British' : 'American';
+    const gender = v.charAt(1) === 'f' ? 'female' : 'male';
+    console.log(`${v.padEnd(14)} ${accent.padEnd(9)} ${gender}`);
+  }
+  return 0;
+}
+
 function usageError(msg) {
   const e = new Error(msg);
   e.usage = true;
@@ -210,6 +231,8 @@ export async function main(argv = process.argv.slice(2)) {
     jobs: cmdJobs,
     qa: cmdQa,
     assets: cmdAssets,
+    'tts-assets': cmdTtsAssets,
+    voices: cmdVoices,
   };
   const handler = commands[command];
   if (!handler) {

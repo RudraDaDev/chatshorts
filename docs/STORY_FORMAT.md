@@ -18,6 +18,7 @@ Run `node src/cli.js validate your-story.json` to check a script before renderin
 | `appearance` | no | `dark` (default) or `light`. |
 | `statusTime` | no | Text in the status bar, default `9:41`. |
 | `background` | no | `{ "video": "path.mp4", "dim": 0.35 }`. Loops behind an inset chat card. You must supply licensed footage. |
+| `narration` | no | `{ "enabled": true, "voice": "af_heart", "speed": 1 }`. Voice-over with Kokoro. See Narration below. |
 | `audio` | no | `{ "sfx": true, "music": null, "musicVolumeDb": -24 }`. `music` may be a path to your licensed track. |
 | `meta` | no | `premise`, `genre`, `tone`, `endingStyle` (`twist`, `cliffhanger`, `resolution`, `open`), `language`. |
 
@@ -31,6 +32,23 @@ never breaks a message.
   - `direct` needs exactly one other participant.
   - `group` needs at least two other participants. Group bubbles show the sender's name and avatar.
 
+## Narration
+
+Narration reads each message aloud with a Kokoro-82M voice. Each character gets a voice, and the render retimes the story to fit the speech.
+
+- `contacts[].voice` and `localUser.voice`: a voice id (run `node src/cli.js voices`). The sender's voice speaks that sender's lines.
+- `narration.voice`: fallback voice for anyone without one (default `af_heart`). `narration.speed`: 0.7 to 1.3.
+- `narration.enabled`: turn narration on for this story. The CLI flags `--narrate` and `--no-narrate` override it.
+- `messages[].narration`: a string to speak instead of `text`, or `false` for silence.
+
+Timing when narration is on. Reveal times in the file are ignored and rebuilt from the audio:
+- The first message keeps its `revealAtMs`.
+- A bubble appears 150 ms before its line starts, and the next bubble waits until the line ends plus 450 ms.
+- Silent messages keep their authored gap, with a floor of 800 ms.
+- The video is at least `durationSeconds`, and at least 2 s after the last line ends. Stories that run past 60 s still render, but YouTube Shorts allows up to 60 s.
+
+The model and voices are downloaded once with `node src/cli.js tts-assets` (about 120 MB, stored under `assets/models/kokoro`). Synthesized lines are cached in `assets/generated/tts`, so re-renders are fast.
+
 ## Messages
 
 ```json
@@ -42,6 +60,7 @@ never breaks a message.
 - `id`: unique. `senderId`: a contact, or `localUser.id` for your messages.
 - `revealAtMs`: when the bubble appears. Must not decrease down the array. The last message must reveal at least 1.5 s before the end.
 - `timestamp` (optional): a centered label before this message. It also breaks a sender group.
+- `narration` (optional): a spoken line for this message, or `false` to keep it silent. The default is the message `text`. Narration is only used when it is turned on (see Narration).
 - `sound` (optional, default `auto`): `auto` plays `send` for your messages and `receive` for others. `none` plays nothing. Any other value must be a cue name:
 
   | Cue | Kind | What it is |
