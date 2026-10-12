@@ -178,6 +178,10 @@
     "enabled": true,
     "speed": 1
   },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
   "meta": {
     "premise": "An ex texts at 1 AM after six months. The friend group talks them down.",
     "genre": "emotional",

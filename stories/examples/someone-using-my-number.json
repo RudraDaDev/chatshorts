@@ -152,6 +152,10 @@
     "enabled": true,
     "speed": 1
   },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
   "meta": {
     "premise": "A person discovers their number has been messaging someone at night.",
     "genre": "thriller",

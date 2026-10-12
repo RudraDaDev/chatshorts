@@ -32,6 +32,17 @@ never breaks a message.
   - `direct` needs exactly one other participant.
   - `group` needs at least two other participants. Group bubbles show the sender's name and avatar.
 
+## Background video
+
+Set `background.video` to a video file and it plays behind the chat. Paths are relative to the story file's folder. The clip loops and is cropped to fill the 1080×1920 frame.
+
+- The chat becomes a smaller card anchored to the bottom (about 66% of the frame height, with a gap underneath). The top of the frame shows the footage, which keeps viewers watching.
+- `background.dim` (0 to 0.9, default 0.35) darkens the footage. The examples use 0.2.
+- The clip's own audio is ignored. Sound comes only from cues, narration, and the music bed.
+- To keep your own footage private or out of Git, store it under `assets/backgrounds/`, which is gitignored for `*.mp4`.
+
+Stories don't need two contacts. A story can be one direct conversation with one contact (see `stories/examples/dad-found-a-photo.json`).
+
 ## Narration
 
 Narration reads each message aloud with a Kokoro-82M voice. Each character gets a voice, and the render retimes the story to fit the speech.

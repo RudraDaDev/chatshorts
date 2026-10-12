@@ -93,6 +93,8 @@ resume after a failed encode, and checks that an invalid story fails and records
 
 ## Assets and licensing
 
+- Background video: `assets/backgrounds/` holds your own footage (not in Git for `*.mp4`). `node scripts/make-background.js` makes an original, copyright-free plasma loop (2 minutes, 720×1280, 30 fps) if you need a placeholder.
+
 - Narration uses Kokoro-82M (Apache-2.0), run locally on CPU with onnxruntime. Its model and voice files are downloaded on demand to `assets/models/` and are not stored in Git. Everything else is in [assets/LICENSES.md](assets/LICENSES.md).
 - The Inter font (OFL) is bundled. Most sound cues and the default music bed are synthesized
   locally. The `bruh` and `rizz` cues are short spoken-word files generated with the platform

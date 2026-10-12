@@ -74,10 +74,14 @@ test('vertical positions never overlap and content height covers every bubble', 
   assert.ok(conv.contentHeight >= conv.items.at(-1).bottom);
 });
 
-test('frame geometry: inset card for backgrounds, full screen otherwise', () => {
+test('frame geometry: lower card for backgrounds, full screen otherwise', () => {
   const full = frameFor({ width: 1080, height: 1920, hasBackground: false });
   assert.deepEqual([full.x, full.y, full.w, full.h], [0, 0, 1080, 1920]);
   const card = frameFor({ width: 1080, height: 1920, hasBackground: true });
-  assert.ok(card.x > 0 && card.y > 0 && card.w < 1080 && card.h < 1920);
+  assert.ok(card.x > 0 && card.w < 1080 && card.h < 1920);
+  assert.ok(card.y > 0, 'background shows above the card');
+  assert.ok(card.y + card.h < 1920, 'gap under the card');
+  assert.ok(card.y >= 1920 * 0.25, 'card sits in the lower part of the frame');
   assert.ok(viewportHeightFor(full) > 1000);
+  assert.ok(viewportHeightFor(card) > 600, 'card still has room for several bubbles');
 });

@@ -187,6 +187,10 @@
     "enabled": true,
     "speed": 1
   },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
   "meta": {
     "premise": "A cabin-weekend group chat reveals a fifth member nobody invited.",
     "genre": "thriller",

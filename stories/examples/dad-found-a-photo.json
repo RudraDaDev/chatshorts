@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "title": "Dad Found A Photo Of Me Holding A Fish",
+  "durationSeconds": 32,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "11:04",
+  "localUser": { "id": "me", "displayName": "Me", "voice": "af_sky" },
+  "contacts": [
+    { "id": "dad", "displayName": "Dad", "color": "#FF9F0A", "voice": "bm_george" }
+  ],
+  "conversations": [
+    { "id": "dad-dm", "type": "direct", "participants": ["dad"], "title": "Dad" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "dad-dm", "senderId": "dad", "text": "hey kid. you up?", "revealAtMs": 600 },
+    { "id": "m02", "conversationId": "dad-dm", "senderId": "me", "text": "dad it's 11pm", "revealAtMs": 2400 },
+    { "id": "m03", "conversationId": "dad-dm", "senderId": "dad", "text": "i know. found something in the garage.", "revealAtMs": 4000 },
+    { "id": "m04", "conversationId": "dad-dm", "senderId": "dad", "text": "a photo of you at 7, holding a fish bigger than your head", "revealAtMs": 5800 },
+    { "id": "m05", "conversationId": "dad-dm", "senderId": "me", "text": "lol that fish was tiny", "revealAtMs": 7600 },
+    { "id": "m06", "conversationId": "dad-dm", "senderId": "dad", "text": "it was enormous. it's been on my desk for 15 years", "revealAtMs": 9000, "sound": "sad" },
+    { "id": "m07", "conversationId": "dad-dm", "senderId": "dad", "text": "your mom says I'm being weird. maybe I am", "revealAtMs": 10900 },
+    { "id": "m08", "conversationId": "dad-dm", "senderId": "me", "text": "you're not weird", "revealAtMs": 12600 },
+    { "id": "m09", "conversationId": "dad-dm", "senderId": "dad", "text": "i miss those weekends", "revealAtMs": 14000 },
+    { "id": "m10", "conversationId": "dad-dm", "senderId": "me", "text": "we can go again. this month", "revealAtMs": 15800, "sound": "ding" },
+    { "id": "m11", "conversationId": "dad-dm", "senderId": "dad", "text": "yeah?", "revealAtMs": 17000 },
+    { "id": "m12", "conversationId": "dad-dm", "senderId": "me", "text": "yeah. I'll bring the rods, you bring the snacks", "revealAtMs": 18300, "sound": "send" },
+    { "id": "m13", "conversationId": "dad-dm", "senderId": "dad", "text": "deal. goodnight kid", "revealAtMs": 20600 },
+    { "id": "m14", "conversationId": "dad-dm", "senderId": "me", "text": "night dad", "revealAtMs": 22200 },
+    { "id": "m15", "conversationId": "dad-dm", "senderId": "dad", "text": "one more thing. I'm proud of you", "revealAtMs": 23600, "sound": "heartbeat" },
+    { "id": "m16", "conversationId": "dad-dm", "senderId": "me", "text": "...ok I'm crying now", "revealAtMs": 25600 }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "narration": { "enabled": true, "speed": 1 },
+  "background": { "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4", "dim": 0.2 },
+  "meta": {
+    "premise": "A dad finds an old photo of his kid and texts about it late at night.",
+    "genre": "emotional",
+    "tone": "warm, nostalgic",
+    "endingStyle": "resolution",
+    "language": "en"
+  }
+}

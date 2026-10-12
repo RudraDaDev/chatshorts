@@ -13,7 +13,8 @@
     "validate": "node src/cli.js validate",
     "generate": "node src/cli.js generate",
     "assets": "node src/cli.js assets",
-    "tts:assets": "node src/cli.js tts-assets"
+    "tts:assets": "node src/cli.js tts-assets",
+    "backgrounds": "node scripts/make-background.js"
   },
   "engines": {
     "node": ">=22.13"

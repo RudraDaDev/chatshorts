@@ -65,20 +65,24 @@ export const THEMES = Object.freeze({
 
 /**
  * Where the phone-like chat "screen" sits on the output canvas.
- * Without a background video the screen fills the canvas; with one it is an
- * inset card so the footage is visible around it.
+ * Without a background video the screen fills the canvas. With one, the screen
+ * is a smaller card anchored to the bottom, so the footage stays visible above
+ * it and viewers have something to watch besides the swipe-up gesture.
  */
+export const CARD = Object.freeze({ heightRatio: 0.66, bottomRatio: 0.04 });
+
 export function frameFor({ width, height, hasBackground }) {
   if (!hasBackground) {
     return { x: 0, y: 0, w: width, h: height, radius: 0 };
   }
   const inset = Math.round(width * 0.037); // ~40px at 1080 wide
-  const insetY = Math.round(height * 0.073); // ~140px at 1920 tall
+  const h = Math.round(height * CARD.heightRatio); // ~1267px at 1920 tall
+  const bottom = Math.round(height * CARD.bottomRatio); // ~77px gap under the card
   return {
     x: inset,
-    y: insetY,
+    y: height - bottom - h,
     w: width - inset * 2,
-    h: height - insetY * 2,
+    h,
     radius: Math.round(width * 0.052),
   };
 }
