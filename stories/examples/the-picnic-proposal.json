@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "title": "I Planned A Surprise And Almost Set Off The Alarm",
+  "durationSeconds": 30,
+  "theme": "imessage",
+  "appearance": "light",
+  "statusTime": "6:41",
+  "localUser": { "id": "me", "displayName": "Me" },
+  "contacts": [
+    { "id": "maya", "displayName": "Maya", "color": "#BF5AF2" },
+    { "id": "jay", "displayName": "Jay", "color": "#FF375F" },
+    { "id": "priya", "displayName": "Priya", "color": "#FF9F0A" }
+  ],
+  "conversations": [
+    { "id": "maya-dm", "type": "direct", "participants": ["maya"], "title": "Maya" },
+    { "id": "plan-squad", "type": "group", "participants": ["jay", "priya"], "title": "The Plan Squad" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "maya-dm", "senderId": "maya", "text": "Don't open the fridge yet.", "revealAtMs": 600 },
+    { "id": "m02", "conversationId": "maya-dm", "senderId": "me", "text": "Why do you sound like that?", "revealAtMs": 2200 },
+    { "id": "m03", "conversationId": "maya-dm", "senderId": "maya", "text": "I may have set off the smoke alarm making your favorite dinner.", "revealAtMs": 3800 },
+    { "id": "m04", "conversationId": "maya-dm", "senderId": "me", "text": "Maya.", "revealAtMs": 5400 },
+    { "id": "m05", "conversationId": "maya-dm", "senderId": "maya", "text": "Okay. Dinner is pasta. The pasta is fine. Mostly.", "revealAtMs": 6800, "sound": "ding" },
+    { "id": "m06", "conversationId": "plan-squad", "senderId": "jay", "text": "did she get the candles??", "revealAtMs": 8600, "sound": "rizz" },
+    { "id": "m07", "conversationId": "plan-squad", "senderId": "me", "text": "Jay, you were supposed to keep this a secret.", "revealAtMs": 10200 },
+    { "id": "m08", "conversationId": "plan-squad", "senderId": "jay", "text": "I did!! I only told the entire group chat.", "revealAtMs": 11800 },
+    { "id": "m09", "conversationId": "plan-squad", "senderId": "priya", "text": "We set everything up on the balcony. Go be romantic.", "revealAtMs": 13500 },
+    { "id": "m10", "conversationId": "maya-dm", "senderId": "maya", "text": "Why are there candles on the balcony?", "revealAtMs": 15200 },
+    { "id": "m11", "conversationId": "maya-dm", "senderId": "me", "text": "Turn around.", "revealAtMs": 16700, "sound": "boom" },
+    { "id": "m12", "conversationId": "maya-dm", "senderId": "maya", "text": "Oh my god. You remembered the bench.", "revealAtMs": 18400 },
+    { "id": "m13", "conversationId": "maya-dm", "senderId": "me", "text": "Every detail from our first date. Marry me? Or at least dinner again tomorrow.", "revealAtMs": 20300 },
+    { "id": "m14", "conversationId": "maya-dm", "senderId": "maya", "text": "Yes. Obviously. Ask me again so I can cry properly.", "revealAtMs": 22600, "sound": "ding" },
+    { "id": "m15", "conversationId": "plan-squad", "senderId": "jay", "text": "IT WORKED. somebody tell my mom.", "revealAtMs": 24600, "sound": "boom" },
+    { "id": "m16", "conversationId": "plan-squad", "senderId": "priya", "text": "The pasta is still alive by the way.", "revealAtMs": 26200 }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "meta": {
+    "premise": "A partner plans a surprise proposal, and the friend group gets involved.",
+    "genre": "happy romance",
+    "tone": "warm, funny",
+    "endingStyle": "resolution",
+    "language": "en"
+  }
+}

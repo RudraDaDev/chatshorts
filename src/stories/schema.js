@@ -63,7 +63,7 @@ export const storySchema = {
           text: { type: 'string', minLength: 1, maxLength: 400 },
           revealAtMs: { type: 'integer', minimum: 0, maximum: 180000 },
           timestamp: { type: 'string', minLength: 1, maxLength: 40 },
-          sound: { enum: ['auto', 'none'] },
+          sound: { type: 'string', minLength: 1, maxLength: 20 },
         },
       },
     },

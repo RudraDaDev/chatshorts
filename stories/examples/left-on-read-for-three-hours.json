@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "title": "She Left Me On Read For Three Hours",
+  "durationSeconds": 32,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "3:17",
+  "localUser": { "id": "me", "displayName": "Me" },
+  "contacts": [
+    { "id": "noor", "displayName": "Noor", "color": "#FF375F" },
+    { "id": "kai", "displayName": "Kai", "color": "#0A84FF" },
+    { "id": "riya", "displayName": "Riya", "color": "#30D158" }
+  ],
+  "conversations": [
+    { "id": "friends-group", "type": "group", "participants": ["kai", "riya"], "title": "Friday Study Crew" },
+    { "id": "noor-dm", "type": "direct", "participants": ["noor"], "title": "Noor" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "friends-group", "senderId": "kai", "text": "did you actually ask her out or nah", "revealAtMs": 600 },
+    { "id": "m02", "conversationId": "friends-group", "senderId": "me", "text": "I sent 'hey, are you free Saturday?' three hours ago. She read it.", "revealAtMs": 2300, "sound": "send" },
+    { "id": "m03", "conversationId": "friends-group", "senderId": "kai", "text": "bro you're being so dramatic", "revealAtMs": 3900, "sound": "bruh" },
+    { "id": "m04", "conversationId": "friends-group", "senderId": "riya", "text": "Left on read is not a rejection. Relax.", "revealAtMs": 5500 },
+    { "id": "m05", "conversationId": "friends-group", "senderId": "me", "text": "Three hours on read. I'm spiraling.", "revealAtMs": 7000 },
+    { "id": "m06", "conversationId": "noor-dm", "senderId": "noor", "text": "sorry my phone was dying lol. yes I'm free", "revealAtMs": 8900, "sound": "ding" },
+    { "id": "m07", "conversationId": "noor-dm", "senderId": "me", "text": "Oh. Cool. Saturday works!!", "revealAtMs": 10500 },
+    { "id": "m08", "conversationId": "noor-dm", "senderId": "noor", "text": "wait is this a date?", "revealAtMs": 12100 },
+    { "id": "m09", "conversationId": "noor-dm", "senderId": "me", "text": "Only if you say yes.", "revealAtMs": 13700, "sound": "rizz" },
+    { "id": "m10", "conversationId": "noor-dm", "senderId": "noor", "text": "yes. but the library, not the cafe. I get weird at cafes.", "revealAtMs": 15400 },
+    { "id": "m11", "conversationId": "noor-dm", "senderId": "me", "text": "Library it is.", "revealAtMs": 17000 },
+    { "id": "m12", "conversationId": "noor-dm", "senderId": "noor", "text": "Before Saturday I need to tell you something.", "revealAtMs": 18600 },
+    { "id": "m13", "conversationId": "noor-dm", "senderId": "noor", "text": "Kai messaged me yesterday and asked me to say yes. Did you know?", "revealAtMs": 21000, "sound": "boom" },
+    { "id": "m14", "conversationId": "friends-group", "senderId": "kai", "text": "bro I was supposed to be subtle", "revealAtMs": 23200 },
+    { "id": "m15", "conversationId": "friends-group", "senderId": "riya", "text": "KAI.", "revealAtMs": 24600 },
+    { "id": "m16", "conversationId": "noor-dm", "senderId": "noor", "text": "Tell me the truth. Then we'll see if I still want the library.", "revealAtMs": 26600 }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "meta": {
+    "premise": "A crush says yes to a date, then reveals a friend set it up.",
+    "genre": "romantic comedy",
+    "tone": "awkward, funny, hopeful",
+    "endingStyle": "cliffhanger",
+    "language": "en"
+  }
+}

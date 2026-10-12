@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import Ajv from 'ajv';
 import { storySchema } from './schema.js';
+import { CUES, SOUND_OPTIONS } from '../audio/cues.js';
 
 const ajv = new Ajv({ allErrors: true, strict: true });
 const validateSchema = ajv.compile(storySchema);
@@ -121,6 +122,9 @@ export function validateStory(raw, { storyDir = process.cwd() } = {}) {
     }
     if (m.text.trim().length > 180) warnings.push(`${where} is ${m.text.trim().length} characters; long bubbles slow the pacing`);
     if (m.timestamp !== undefined && !m.timestamp.trim()) errors.push(`${where} has an empty timestamp label`);
+    if (!SOUND_OPTIONS.includes(m.sound) && !Object.hasOwn(CUES, m.sound)) {
+      errors.push(`${where} uses unknown sound "${m.sound}" (use auto, none, or one of: ${Object.keys(CUES).join(', ')})`);
+    }
     prevReveal = m.revealAtMs;
     prevId = m.id;
   });

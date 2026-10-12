@@ -42,7 +42,20 @@ never breaks a message.
 - `id`: unique. `senderId`: a contact, or `localUser.id` for your messages.
 - `revealAtMs`: when the bubble appears. Must not decrease down the array. The last message must reveal at least 1.5 s before the end.
 - `timestamp` (optional): a centered label before this message. It also breaks a sender group.
-- `sound`: `auto` (default: a pop for received, a whoosh for sent) or `none`.
+- `sound` (optional, default `auto`): `auto` plays `send` for your messages and `receive` for others. `none` plays nothing. Any other value must be a cue name:
+
+  | Cue | Kind | What it is |
+  |---|---|---|
+  | `receive` | synth | short pop for incoming messages |
+  | `send` | synth | short whoosh for outgoing messages |
+  | `boom` | synth | deep bass drop, a "vine boom"-style hit (original synth, not a recording) |
+  | `ding` | synth | two-tone notification chime |
+  | `sad` | synth | four falling notes |
+  | `heartbeat` | synth | two thumps, lub-dub |
+  | `bruh` | voice | the word "Bruh", spoken by the platform TTS voice |
+  | `rizz` | voice | the word "Rizz", spoken by the platform TTS voice |
+
+  Unknown names fail validation. Cues are built by `npm run assets` into `assets/generated/sfx/`.
 
 The viewport scrolls to keep the newest bubble above the input bar. The layout engine measures every
 bubble's text in Chromium, so you never provide pixel positions.

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "title": "My Ex Texted At 1 AM After Six Months",
+  "durationSeconds": 30,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "1:04",
+  "localUser": { "id": "me", "displayName": "Me" },
+  "contacts": [
+    { "id": "leo", "displayName": "Leo", "color": "#64D2FF" },
+    { "id": "sam", "displayName": "Sam", "color": "#FF9F0A" },
+    { "id": "dana", "displayName": "Dana", "color": "#30D158" }
+  ],
+  "conversations": [
+    { "id": "leo-dm", "type": "direct", "participants": ["leo"], "title": "Leo" },
+    { "id": "night-crew", "type": "group", "participants": ["sam", "dana"], "title": "Night Crew" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "leo-dm", "senderId": "leo", "text": "Hey. It's me. Can we talk?", "revealAtMs": 600, "sound": "heartbeat" },
+    { "id": "m02", "conversationId": "leo-dm", "senderId": "me", "text": "It's 1 am, Leo.", "revealAtMs": 2200 },
+    { "id": "m03", "conversationId": "leo-dm", "senderId": "leo", "text": "I know. I've been typing this for an hour and deleting it.", "revealAtMs": 3700 },
+    { "id": "m04", "conversationId": "leo-dm", "senderId": "me", "text": "You said you needed space. Six months of space.", "revealAtMs": 5400 },
+    { "id": "m05", "conversationId": "leo-dm", "senderId": "leo", "text": "I was wrong. I miss the way you laughed at my bad jokes.", "revealAtMs": 7100, "sound": "sad" },
+    { "id": "m06", "conversationId": "night-crew", "senderId": "me", "text": "Leo just texted. He wants to talk. Please tell me what to do.", "revealAtMs": 9000 },
+    { "id": "m07", "conversationId": "night-crew", "senderId": "dana", "text": "Do not answer until tomorrow. Do not go outside.", "revealAtMs": 10600 },
+    { "id": "m08", "conversationId": "night-crew", "senderId": "sam", "text": "bruh. six months and a 1 am 'can we talk'?", "revealAtMs": 12200, "sound": "bruh" },
+    { "id": "m09", "conversationId": "night-crew", "senderId": "sam", "text": "You deserve someone who doesn't need six months to say sorry.", "revealAtMs": 13900 },
+    { "id": "m10", "conversationId": "leo-dm", "senderId": "me", "text": "I'm not coming outside, Leo.", "revealAtMs": 15700 },
+    { "id": "m11", "conversationId": "leo-dm", "senderId": "leo", "text": "Okay. Can I at least say goodbye properly?", "revealAtMs": 17400 },
+    { "id": "m12", "conversationId": "leo-dm", "senderId": "me", "text": "Sure.", "revealAtMs": 19000, "sound": "send" },
+    { "id": "m13", "conversationId": "leo-dm", "senderId": "leo", "text": "Thank you for the good years. I hope you're happier than I am.", "revealAtMs": 20700 },
+    { "id": "m14", "conversationId": "leo-dm", "senderId": "me", "text": "Bye, Leo.", "revealAtMs": 22400 },
+    { "id": "m15", "conversationId": "night-crew", "senderId": "dana", "text": "Proud of you. Going to sleep now. Text me in the morning.", "revealAtMs": 24200, "sound": "ding" },
+    { "id": "m16", "conversationId": "night-crew", "senderId": "sam", "text": "Ice cream tomorrow. My treat. Don't argue.", "revealAtMs": 25800, "sound": "ding" }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "meta": {
+    "premise": "An ex texts at 1 AM after six months. The friend group talks them down.",
+    "genre": "emotional",
+    "tone": "bittersweet, relatable",
+    "endingStyle": "resolution",
+    "language": "en"
+  }
+}

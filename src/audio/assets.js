@@ -1,18 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { run } from '../renderer/ffmpeg.js';
+import { CUES } from './cues.js';
 
-// Default sound effects and music are generated locally with FFmpeg, so the
-// project ships no third-party audio and there is no licensing question for
-// them. To use your own licensed audio, set story.audio.music, or replace the
-// generated files in assets/generated/sfx (see assets/LICENSES.md).
-
-const SFX = {
-  // "receive": short descending pop for messages from other people
-  receive: "aevalsrc=exprs='0.6*sin(2*PI*(1250-700*t/0.16)*t)*exp(-t*26)|0.6*sin(2*PI*(1250-700*t/0.16)*t)*exp(-t*26)':s=44100:d=0.2,afade=t=out:st=0.14:d=0.06",
-  // "send": soft band-limited noise whoosh for the local user's messages
-  send: 'anoisesrc=d=0.26:c=white:r=44100:a=1,highpass=f=900,lowpass=f=4500,afade=t=in:d=0.05,afade=t=out:st=0.12:d=0.14,volume=0.45',
-};
+// Sound cues are generated (or trimmed from committed voice sources) with FFmpeg,
+// so the project ships no third-party audio. Generated files are written to
+// assets/generated/sfx (gitignored) and rebuilt on demand.
 
 /** Expression for the generated background pad (two slightly detuned channels). */
 export const MUSIC_PAD_EXPR = [
@@ -20,20 +13,48 @@ export const MUSIC_PAD_EXPR = [
   '0.16*sin(2*PI*111*t)+0.10*sin(2*PI*166*t)+0.07*sin(2*PI*221*t)*(0.55+0.45*sin(2*PI*0.18*t+0.9))',
 ].join('|');
 
-/** Generate missing default SFX into dir. Returns {receive, send} absolute paths. */
-export async function ensureSfx(ffmpeg, dir) {
+const TARGET_PEAK_DB = -4;
+
+/** Peak level in dBFS of an audio file, from FFmpeg volumedetect. */
+export async function peakDb(ffmpeg, file) {
+  const { stderr } = await run(ffmpeg, ['-hide_banner', '-i', file, '-af', 'volumedetect', '-f', 'null', '-']);
+  const m = stderr.match(/max_volume:\s*(-?[\d.]+) dB/);
+  if (!m) throw new Error(`could not measure peak of ${file}`);
+  return Number(m[1]);
+}
+
+/** Write `input` to `output` as 44.1 kHz stereo WAV with its peak set to TARGET_PEAK_DB. */
+async function normalizeTo(ffmpeg, args, output) {
+  const tmp = `${output}.tmp.wav`;
+  await run(ffmpeg, ['-y', '-hide_banner', '-loglevel', 'error', ...args, '-ac', '2', '-ar', '44100', tmp]);
+  const gain = TARGET_PEAK_DB - (await peakDb(ffmpeg, tmp));
+  await run(ffmpeg, ['-y', '-hide_banner', '-loglevel', 'error', '-i', tmp, '-af', `volume=${gain.toFixed(2)}dB`, '-ac', '2', '-ar', '44100', output]);
+  fs.rmSync(tmp, { force: true });
+}
+
+/**
+ * Build every cue in CUES into `dir` (skips files that already exist).
+ * @param {string} ffmpeg   FFmpeg binary path
+ * @param {string} dir      output directory for generated cue WAVs
+ * @param {string} sourceDir directory holding voice source files (assets/sfx)
+ * @returns {Promise<Record<string,string>>} cue name -> absolute WAV path
+ */
+export async function ensureCues(ffmpeg, dir, sourceDir) {
   fs.mkdirSync(dir, { recursive: true });
   const out = {};
-  for (const [name, source] of Object.entries(SFX)) {
+  for (const [name, cue] of Object.entries(CUES)) {
     const file = path.join(dir, `${name}.wav`);
-    if (!fs.existsSync(file)) {
-      const isStereoSource = source.startsWith('aevalsrc');
-      const args = ['-y', '-hide_banner', '-loglevel', 'error', '-f', 'lavfi', '-i', source, '-ac', '2', '-ar', '44100'];
-      if (!isStereoSource) args.push('-af', 'aformat=channel_layouts=stereo');
-      args.push(file);
-      await run(ffmpeg, args);
-    }
     out[name] = file;
+    if (fs.existsSync(file)) continue;
+    if (cue.kind === 'synth') {
+      await normalizeTo(ffmpeg, ['-f', 'lavfi', '-i', cue.graph], file);
+    } else if (cue.kind === 'voice') {
+      const src = path.join(sourceDir, cue.source);
+      if (!fs.existsSync(src)) throw new Error(`voice source missing: ${src}`);
+      const trim = 'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.02,areverse,' +
+        'silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.02,areverse';
+      await normalizeTo(ffmpeg, ['-i', src, '-af', trim], file);
+    }
   }
   return out;
 }

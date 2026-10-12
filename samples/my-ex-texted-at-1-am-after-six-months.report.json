@@ -1,0 +1,56 @@
+{
+  "jobId": "job-20261012132252-1712af",
+  "title": "My Ex Texted At 1 AM After Six Months",
+  "output": "/home/user/chatshorts/output/my-ex-texted-at-1-am-after-six-months-1712af.mp4",
+  "durationSeconds": 30,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 14228
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 1526
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 928
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 12787
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 3
+    }
+  ],
+  "totalStageMs": 29472,
+  "renderedStills": 134,
+  "frames": 900,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T13:23:21.610Z"
+}

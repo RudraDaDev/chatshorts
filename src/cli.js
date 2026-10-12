@@ -8,7 +8,7 @@ import { createStoryProvider } from './providers/llm.js';
 import { JobStore } from './jobs/job-store.js';
 import { createJob, runJob } from './jobs/pipeline.js';
 import { resolveBinaries, ffprobeJson } from './renderer/ffmpeg.js';
-import { ensureSfx } from './audio/assets.js';
+import { ensureCues } from './audio/assets.js';
 import { qaOutput } from './qa/validate-output.js';
 
 const USAGE = `ChatShorts: render fictional iMessage-style Shorts from a JSON story script.
@@ -20,7 +20,7 @@ Usage:
   node src/cli.js resume <jobId>                   Continue a failed/interrupted job from its failed stage
   node src/cli.js jobs [--limit 20]                List recent jobs
   node src/cli.js qa <video.mp4>                   Media QA on any MP4 (ffprobe, decode, audio levels)
-  node src/cli.js assets                           Generate the default sound effects (assets/generated/sfx)
+  node src/cli.js assets                           Build the sound cues (assets/generated/sfx)
 
 Pass "-" as the story path to read the JSON from stdin.
 `;
@@ -183,8 +183,8 @@ async function cmdQa(config, { positional }) {
 
 async function cmdAssets(config) {
   const bin = resolveBinaries(config);
-  const files = await ensureSfx(bin.ffmpeg, config.sfxDir);
-  console.log(`sound effects: ${files.receive}, ${files.send}`);
+  const files = await ensureCues(bin.ffmpeg, config.sfxDir, path.join(config.root, 'assets', 'sfx'));
+  for (const [name, file] of Object.entries(files)) console.log(`${name.padEnd(10)} ${file}`);
   return 0;
 }
 

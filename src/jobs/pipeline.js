@@ -9,7 +9,7 @@ import { buildTimeline } from '../layout/viewport.js';
 import { launchBrowser } from '../renderer/browser.js';
 import { openChatPage, renderStates } from '../renderer/scenes.js';
 import { resolveBinaries, encodeVideo, concatList } from '../renderer/ffmpeg.js';
-import { ensureSfx } from '../audio/assets.js';
+import { ensureCues } from '../audio/assets.js';
 import { buildAudioPlan } from '../audio/mix.js';
 import { qaOutput } from '../qa/validate-output.js';
 
@@ -204,14 +204,16 @@ const STAGE_FNS = {
     fs.writeFileSync(listFile, concatList(manifest.sequence, config.fps));
 
     const noAudio = Boolean(options.noAudio);
-    const sfx = !noAudio && story.audio.sfx ? await ensureSfx(ctx.ffmpeg, config.sfxDir) : { receive: null, send: null };
+    const cues = !noAudio && story.audio.sfx
+      ? await ensureCues(ctx.ffmpeg, config.sfxDir, path.join(config.root, 'assets', 'sfx'))
+      : {};
     const background = story.background
       ? { file: path.resolve(job.storyDir, story.background.video), dim: story.background.dim }
       : null;
     const audioPlan = buildAudioPlan({
       story,
       storyDir: job.storyDir,
-      sfx,
+      cues,
       firstInput: background ? 2 : 1,
       durationMs,
       mode: noAudio ? 'none' : 'full',

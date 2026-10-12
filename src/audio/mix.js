@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { MUSIC_PAD_EXPR } from './assets.js';
+import { CUES } from './cues.js';
 
-const SFX_DB = -6;
 const MERGE_GROUP = 16; // channels per amerge stage stay well under FFmpeg's channel limit
 
 /**
@@ -15,13 +15,13 @@ const MERGE_GROUP = 16; // channels per amerge stage stay well under FFmpeg's ch
  * @param {object} args
  * @param {object} args.story        normalized story
  * @param {string} args.storyDir     directory used to resolve audio.music
- * @param {{receive:string,send:string}} args.sfx  absolute SFX file paths
+ * @param {Record<string,string>} args.cues  cue name -> absolute WAV path (see ensureCues)
  * @param {number} args.firstInput   index of the first input this plan adds
  * @param {number} args.durationMs
  * @param {'full'|'none'} args.mode  'none' produces silence (--no-audio)
  * @returns {{ inputs: string[], parts: string[], outLabel: string, events: number, music: string }}
  */
-export function buildAudioPlan({ story, storyDir, sfx, firstInput, durationMs, mode = 'full' }) {
+export function buildAudioPlan({ story, storyDir, cues, firstInput, durationMs, mode = 'full' }) {
   const dur = (durationMs / 1000).toFixed(3);
   const inputs = [];
   let idx = firstInput;
@@ -53,12 +53,16 @@ export function buildAudioPlan({ story, storyDir, sfx, firstInput, durationMs, m
     const localId = story.localUser.id;
     for (const m of story.messages) {
       if (m.sound === 'none') continue;
-      const cue = m.senderId === localId ? sfx.send : sfx.receive;
+      // "auto" = pop for received messages, whoosh for sent ones; anything else is a named cue.
+      const name = m.sound === 'auto' ? (m.senderId === localId ? 'send' : 'receive') : m.sound;
+      const cue = CUES[name];
+      const file = cues[name];
+      if (!cue || !file) throw new Error(`unknown sound cue "${name}" on message ${m.id}`);
       const ms = Math.round(m.revealAtMs);
-      inputs.push('-i', cue);
+      inputs.push('-i', file);
       parts.push(
         `[${idx}:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,` +
-          `adelay=${ms}|${ms},apad,volume=${SFX_DB}dB[s${events}]`,
+          `adelay=${ms}|${ms},apad,volume=${cue.gainDb}dB[s${events}]`,
       );
       labels.push(`[s${events}]`);
       idx += 1;

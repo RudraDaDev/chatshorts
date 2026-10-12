@@ -1,0 +1,56 @@
+{
+  "jobId": "job-20261012132321-2cc170",
+  "title": "I Planned A Surprise And Almost Set Off The Alarm",
+  "output": "/home/user/chatshorts/output/i-planned-a-surprise-and-almost-set-off-the-alarm-2cc170.mp4",
+  "durationSeconds": 30,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 14709
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 162
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 940
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 12939
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 4
+    }
+  ],
+  "totalStageMs": 28754,
+  "renderedStills": 135,
+  "frames": 900,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T13:23:50.669Z"
+}

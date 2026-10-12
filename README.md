@@ -13,7 +13,7 @@ Requires Node.js 22.13 or newer.
 
 ```bash
 npm install
-npm run assets          # optional: generate the default sound effects
+npm run assets          # optional: build the sound cues into assets/generated/sfx/
 node src/cli.js help
 ```
 
@@ -91,8 +91,10 @@ resume after a failed encode, and checks that an invalid story fails and records
 
 ## Assets and licensing
 
-- The Inter font (OFL) is bundled. Sound effects and the default music bed are synthesized
-  locally, so the project includes no third-party audio.
+- The Inter font (OFL) is bundled. Most sound cues and the default music bed are synthesized
+  locally. The `bruh` and `rizz` cues are short spoken-word files generated with the platform
+  TTS voice and committed under `assets/sfx/voice/`. The project has no licensed recordings. See
+  [assets/LICENSES.md](assets/LICENSES.md).
 - Gameplay footage (for example Minecraft parkour) is **not** included. Supply footage you are licensed to use through `background.video`.
 - Record every asset you add in [assets/LICENSES.md](assets/LICENSES.md).
 - Check current YouTube content and monetization rules before publishing. Fictional stories should be labeled as such if the channel requires it.

@@ -82,3 +82,15 @@ test('schema violations are reported with the offending path', () => {
   assert.equal(r.ok, false);
   assert.match(r.errors.join('\n'), /additionalProperties|mood/);
 });
+
+test('named sound cues are accepted; unknown or prototype names are rejected', () => {
+  const ok = miniStory();
+  ok.messages[0].sound = 'boom';
+  assert.equal(validateStory(ok, { storyDir: dir }).ok, true);
+  const bad = miniStory();
+  bad.messages[0].sound = 'airhorn';
+  assert.match(validateStory(bad, { storyDir: dir }).errors.join('\n'), /unknown sound "airhorn"/);
+  const proto = miniStory();
+  proto.messages[0].sound = 'toString';
+  assert.match(validateStory(proto, { storyDir: dir }).errors.join('\n'), /unknown sound "toString"/);
+});
