@@ -1,0 +1,56 @@
+{
+  "jobId": "job-20261012085411-b35790",
+  "title": "The Group Chat Has One Member Too Many",
+  "output": "/home/user/chatshorts/output/the-fifth-member.mp4",
+  "durationSeconds": 33,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 17270
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 2161
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 1058
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 16613
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 3
+    }
+  ],
+  "totalStageMs": 37105,
+  "renderedStills": 159,
+  "frames": 990,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T08:54:48.497Z"
+}
