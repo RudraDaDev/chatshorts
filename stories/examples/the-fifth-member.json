@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "title": "The Group Chat Has One Member Too Many",
+  "durationSeconds": 33,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "7:14",
+  "localUser": { "id": "me", "displayName": "Me" },
+  "contacts": [
+    { "id": "priya", "displayName": "Priya", "color": "#BF5AF2" },
+    { "id": "jess", "displayName": "Jess", "color": "#FF9F0A" },
+    { "id": "theo", "displayName": "Theo", "color": "#30D158" },
+    { "id": "unknown", "displayName": "Unknown", "color": "#8E8E93" }
+  ],
+  "conversations": [
+    { "id": "cabin-group", "type": "group", "participants": ["priya", "jess", "theo"], "title": "Cabin Weekend" },
+    { "id": "unknown-dm", "type": "direct", "participants": ["unknown"], "title": "Unknown" }
+  ],
+  "messages": [
+    { "id": "m01", "conversationId": "cabin-group", "senderId": "priya", "text": "Did everyone get home from the cabin okay?", "revealAtMs": 600 },
+    { "id": "m02", "conversationId": "cabin-group", "senderId": "me", "text": "Home? We're still at the cabin. Theo's making pancakes.", "revealAtMs": 2300 },
+    { "id": "m03", "conversationId": "cabin-group", "senderId": "jess", "text": "I left at 6 this morning. I'm literally at my desk.", "revealAtMs": 3900 },
+    { "id": "m04", "conversationId": "cabin-group", "senderId": "theo", "text": "I've been in bed since 10. My phone's been on the charger.", "revealAtMs": 5500 },
+    { "id": "m05", "conversationId": "cabin-group", "senderId": "priya", "text": "Then who sent this from Theo's number? \"Bye everyone. Don't wait up.\"", "revealAtMs": 7300, "timestamp": "Saturday 2:14 AM" },
+    { "id": "m06", "conversationId": "cabin-group", "senderId": "me", "text": "Who still has the cabin key?", "revealAtMs": 9000 },
+    { "id": "m07", "conversationId": "cabin-group", "senderId": "jess", "text": "I gave it back to the caretaker Friday. Only he and the owner have copies.", "revealAtMs": 10700 },
+    { "id": "m08", "conversationId": "cabin-group", "senderId": "theo", "text": "Wait. Check the member list.", "revealAtMs": 12400 },
+    { "id": "m09", "conversationId": "cabin-group", "senderId": "priya", "text": "It says five people. There are four of us. Who's the fifth?", "revealAtMs": 14000 },
+    { "id": "m10", "conversationId": "cabin-group", "senderId": "jess", "text": "Priya, did you add someone on Tuesday?", "revealAtMs": 15600 },
+    { "id": "m11", "conversationId": "cabin-group", "senderId": "priya", "text": "No. I'm removing them right now.", "revealAtMs": 17200 },
+    { "id": "m12", "conversationId": "cabin-group", "senderId": "me", "text": "Wait. Don't remove them yet. Check their profile first.", "revealAtMs": 18900 },
+    { "id": "m13", "conversationId": "cabin-group", "senderId": "theo", "text": "Their profile picture is the cabin, taken from outside, at night.", "revealAtMs": 20600 },
+    { "id": "m14", "conversationId": "unknown-dm", "senderId": "unknown", "text": "You're the only one who counted.", "revealAtMs": 22600 },
+    { "id": "m15", "conversationId": "unknown-dm", "senderId": "me", "text": "Who is this?", "revealAtMs": 24400 },
+    { "id": "m16", "conversationId": "unknown-dm", "senderId": "unknown", "text": "The fifth one. I've been in the group since Tuesday.", "revealAtMs": 26200 },
+    { "id": "m17", "conversationId": "unknown-dm", "senderId": "unknown", "text": "Count again before you go to sleep.", "revealAtMs": 29400 }
+  ],
+  "audio": { "sfx": true, "music": null, "musicVolumeDb": -26 },
+  "meta": {
+    "premise": "A cabin-weekend group chat reveals a fifth member nobody invited.",
+    "genre": "thriller",
+    "tone": "uneasy, quick-cut",
+    "endingStyle": "cliffhanger",
+    "language": "en"
+  }
+}
