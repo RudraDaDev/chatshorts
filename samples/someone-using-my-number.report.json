@@ -1,7 +1,7 @@
 {
-  "jobId": "job-20261012140919-4c70a9",
+  "jobId": "job-20261012143441-9f1420",
   "title": "Someone Is Texting From My Number",
-  "output": "/home/user/chatshorts/output/someone-is-texting-from-my-number-4c70a9.mp4",
+  "output": "/home/user/chatshorts/output/someone-is-texting-from-my-number-9f1420.mp4",
   "durationSeconds": 39.9,
   "resolution": "1080x1920",
   "fps": 30,
@@ -9,27 +9,27 @@
     {
       "name": "encode",
       "status": "done",
-      "durationMs": 18468
+      "durationMs": 59909
     },
     {
       "name": "layout",
       "status": "done",
-      "durationMs": 160
+      "durationMs": 325
     },
     {
       "name": "narrate",
       "status": "done",
-      "durationMs": 44715
+      "durationMs": 617
     },
     {
       "name": "qa",
       "status": "done",
-      "durationMs": 1266
+      "durationMs": 3043
     },
     {
       "name": "render",
       "status": "done",
-      "durationMs": 9298
+      "durationMs": 12818
     },
     {
       "name": "validate",
@@ -37,8 +37,8 @@
       "durationMs": 3
     }
   ],
-  "totalStageMs": 73910,
-  "renderedStills": 105,
+  "totalStageMs": 76715,
+  "renderedStills": 122,
   "frames": 1197,
   "validation": {
     "warnings": []
@@ -57,5 +57,5 @@
       "costUsd": 0
     }
   ],
-  "completedAt": "2026-10-12T14:10:33.392Z"
+  "completedAt": "2026-10-12T14:35:57.986Z"
 }

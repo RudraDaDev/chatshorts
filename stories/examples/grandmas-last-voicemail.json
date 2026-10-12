@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "title": "Nani Left Us A Voicemail Three Days Before",
+  "durationSeconds": 32,
+  "theme": "imessage",
+  "appearance": "light",
+  "statusTime": "8:15",
+  "localUser": {
+    "id": "me",
+    "displayName": "Me",
+    "voice": "af_sky"
+  },
+  "contacts": [
+    {
+      "id": "mom",
+      "displayName": "Mom",
+      "color": "#FF375F",
+      "voice": "bf_emma"
+    },
+    {
+      "id": "ravi",
+      "displayName": "Ravi",
+      "color": "#64D2FF",
+      "voice": "bm_lewis"
+    },
+    {
+      "id": "anya",
+      "displayName": "Anya",
+      "color": "#FFD60A",
+      "voice": "af_bella"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "mom-dm",
+      "type": "direct",
+      "participants": [
+        "mom"
+      ],
+      "title": "Mom"
+    },
+    {
+      "id": "family",
+      "type": "group",
+      "participants": [
+        "ravi",
+        "anya",
+        "mom"
+      ],
+      "title": "Family"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m01",
+      "conversationId": "mom-dm",
+      "senderId": "mom",
+      "text": "Did you listen to Nani's voicemail?",
+      "revealAtMs": 600
+    },
+    {
+      "id": "m02",
+      "conversationId": "mom-dm",
+      "senderId": "me",
+      "text": "Not yet. I can't.",
+      "revealAtMs": 2400,
+      "sound": "sad"
+    },
+    {
+      "id": "m03",
+      "conversationId": "mom-dm",
+      "senderId": "mom",
+      "text": "It's okay. She sounded happy. She was making fun of my cooking.",
+      "revealAtMs": 4000
+    },
+    {
+      "id": "m04",
+      "conversationId": "family",
+      "senderId": "me",
+      "text": "Mom says Nani left us a voicemail.",
+      "revealAtMs": 6000,
+      "sound": "receive"
+    },
+    {
+      "id": "m05",
+      "conversationId": "family",
+      "senderId": "ravi",
+      "text": "I can't play it yet.",
+      "revealAtMs": 7600
+    },
+    {
+      "id": "m06",
+      "conversationId": "family",
+      "senderId": "anya",
+      "text": "Let's play it together on speaker?",
+      "revealAtMs": 9000
+    },
+    {
+      "id": "m07",
+      "conversationId": "family",
+      "senderId": "me",
+      "text": "Okay. Everybody call me in five.",
+      "revealAtMs": 10600,
+      "sound": "send"
+    },
+    {
+      "id": "m08",
+      "conversationId": "family",
+      "senderId": "anya",
+      "text": "She said 'eat something, you're too thin' and 'Ravi, your car is a disaster'",
+      "revealAtMs": 13000,
+      "sound": "ding"
+    },
+    {
+      "id": "m09",
+      "conversationId": "family",
+      "senderId": "ravi",
+      "text": "She was right about the car.",
+      "revealAtMs": 14800
+    },
+    {
+      "id": "m10",
+      "conversationId": "family",
+      "senderId": "me",
+      "text": "She was always right.",
+      "revealAtMs": 16200
+    },
+    {
+      "id": "m11",
+      "conversationId": "mom-dm",
+      "senderId": "mom",
+      "text": "I'm glad you three are talking. She would have loved that.",
+      "revealAtMs": 17800,
+      "sound": "heartbeat"
+    },
+    {
+      "id": "m12",
+      "conversationId": "mom-dm",
+      "senderId": "me",
+      "text": "I'll call you tomorrow.",
+      "revealAtMs": 19600
+    },
+    {
+      "id": "m13",
+      "conversationId": "mom-dm",
+      "senderId": "mom",
+      "text": "Love you. Eat something.",
+      "revealAtMs": 21200
+    },
+    {
+      "id": "m14",
+      "conversationId": "mom-dm",
+      "senderId": "me",
+      "text": "Love you too.",
+      "revealAtMs": 22800,
+      "sound": "send"
+    }
+  ],
+  "audio": {
+    "sfx": true,
+    "music": null,
+    "musicVolumeDb": -26
+  },
+  "narration": {
+    "enabled": true,
+    "speed": 1
+  },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
+  "meta": {
+    "premise": "After a grandmother's death, her family plays her last voicemail together.",
+    "genre": "emotional",
+    "tone": "grief, tender, warm",
+    "endingStyle": "resolution",
+    "language": "en"
+  }
+}

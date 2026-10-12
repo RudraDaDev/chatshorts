@@ -1,0 +1,61 @@
+{
+  "jobId": "job-20261012145319-343eee",
+  "title": "He Was Supposed To Land At 6. It's Almost Midnight.",
+  "output": "/home/user/chatshorts/output/he-was-supposed-to-land-at-6-it-s-almost-midnight-343eee.mp4",
+  "durationSeconds": 41.3,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 62151
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 199
+    },
+    {
+      "name": "narrate",
+      "status": "done",
+      "durationMs": 50691
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 3111
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 14243
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 3
+    }
+  ],
+  "totalStageMs": 130398,
+  "renderedStills": 134,
+  "frames": 1239,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T14:55:30.485Z"
+}

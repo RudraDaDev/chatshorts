@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "title": "He Was Supposed To Land At 6. It's Almost Midnight.",
+  "durationSeconds": 32,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "11:42",
+  "localUser": {
+    "id": "me",
+    "displayName": "Me",
+    "voice": "af_kore"
+  },
+  "contacts": [
+    {
+      "id": "jordan",
+      "displayName": "Jordan",
+      "color": "#30D158",
+      "voice": "am_eric"
+    },
+    {
+      "id": "priya",
+      "displayName": "Priya",
+      "color": "#BF5AF2",
+      "voice": "af_nova"
+    },
+    {
+      "id": "theo",
+      "displayName": "Theo",
+      "color": "#0A84FF",
+      "voice": "am_puck"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "jordan-dm",
+      "type": "direct",
+      "participants": [
+        "jordan"
+      ],
+      "title": "Jordan"
+    },
+    {
+      "id": "friends",
+      "type": "group",
+      "participants": [
+        "priya",
+        "theo"
+      ],
+      "title": "Airport Support Crew"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m01",
+      "conversationId": "jordan-dm",
+      "senderId": "jordan",
+      "text": "Landing in 20 min. Don't wait up.",
+      "revealAtMs": 600
+    },
+    {
+      "id": "m02",
+      "conversationId": "jordan-dm",
+      "senderId": "me",
+      "text": "I'm already at arrivals. With a sign.",
+      "revealAtMs": 2400
+    },
+    {
+      "id": "m03",
+      "conversationId": "jordan-dm",
+      "senderId": "jordan",
+      "text": "You did NOT make a sign.",
+      "revealAtMs": 3900
+    },
+    {
+      "id": "m04",
+      "conversationId": "jordan-dm",
+      "senderId": "me",
+      "text": "It says WELCOME HOME, I MISS YOUR DUMB FACE.",
+      "revealAtMs": 5200,
+      "sound": "ding"
+    },
+    {
+      "id": "m05",
+      "conversationId": "friends",
+      "senderId": "me",
+      "text": "Jordan's plane landed 40 min ago. Still no text.",
+      "revealAtMs": 7000,
+      "sound": "heartbeat"
+    },
+    {
+      "id": "m06",
+      "conversationId": "friends",
+      "senderId": "priya",
+      "text": "They're probably stuck in the baggage line. Breathe.",
+      "revealAtMs": 8600
+    },
+    {
+      "id": "m07",
+      "conversationId": "friends",
+      "senderId": "theo",
+      "text": "Or the plane got diverted to Ohio lol",
+      "revealAtMs": 10000,
+      "sound": "bruh"
+    },
+    {
+      "id": "m08",
+      "conversationId": "friends",
+      "senderId": "me",
+      "text": "Theo I hate you",
+      "revealAtMs": 11200
+    },
+    {
+      "id": "m09",
+      "conversationId": "jordan-dm",
+      "senderId": "jordan",
+      "text": "Ok I'm out. Where are you?",
+      "revealAtMs": 13000,
+      "sound": "receive"
+    },
+    {
+      "id": "m10",
+      "conversationId": "jordan-dm",
+      "senderId": "me",
+      "text": "The sign. You can't miss it.",
+      "revealAtMs": 14600
+    },
+    {
+      "id": "m11",
+      "conversationId": "jordan-dm",
+      "senderId": "jordan",
+      "text": "I see it. I'm crying in front of a pillar.",
+      "revealAtMs": 16200,
+      "sound": "sad"
+    },
+    {
+      "id": "m12",
+      "conversationId": "jordan-dm",
+      "senderId": "me",
+      "text": "Same. Come here already.",
+      "revealAtMs": 18000
+    },
+    {
+      "id": "m13",
+      "conversationId": "jordan-dm",
+      "senderId": "jordan",
+      "text": "I missed you so much it hurt for three weeks straight.",
+      "revealAtMs": 19800,
+      "sound": "heartbeat"
+    },
+    {
+      "id": "m14",
+      "conversationId": "friends",
+      "senderId": "priya",
+      "text": "Tell them the sign was a good idea.",
+      "revealAtMs": 22000
+    },
+    {
+      "id": "m15",
+      "conversationId": "friends",
+      "senderId": "me",
+      "text": "Going offline. Thank you all.",
+      "revealAtMs": 23600,
+      "sound": "send"
+    }
+  ],
+  "audio": {
+    "sfx": true,
+    "music": null,
+    "musicVolumeDb": -26
+  },
+  "narration": {
+    "enabled": true,
+    "speed": 1
+  },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
+  "meta": {
+    "premise": "A long-distance partner's flight is delayed, and the friend group keeps the waiting partner company.",
+    "genre": "emotional",
+    "tone": "relieved, warm, funny",
+    "endingStyle": "resolution",
+    "language": "en"
+  }
+}

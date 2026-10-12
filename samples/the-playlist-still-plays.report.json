@@ -1,0 +1,61 @@
+{
+  "jobId": "job-20261012145731-057121",
+  "title": "We Broke Up Two Years Ago. He Still Skips The Rain Song.",
+  "output": "/home/user/chatshorts/output/we-broke-up-two-years-ago-he-still-skips-the-rain-song-057121.mp4",
+  "durationSeconds": 48.1,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 70262
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 190
+    },
+    {
+      "name": "narrate",
+      "status": "done",
+      "durationMs": 54707
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 3502
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 14859
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 4
+    }
+  ],
+  "totalStageMs": 143524,
+  "renderedStills": 146,
+  "frames": 1443,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T14:59:55.362Z"
+}

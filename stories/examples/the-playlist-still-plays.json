@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "title": "We Broke Up Two Years Ago. He Still Skips The Rain Song.",
+  "durationSeconds": 32,
+  "theme": "imessage",
+  "appearance": "dark",
+  "statusTime": "10:20",
+  "localUser": {
+    "id": "me",
+    "displayName": "Me",
+    "voice": "af_nicole"
+  },
+  "contacts": [
+    {
+      "id": "alex",
+      "displayName": "Alex",
+      "color": "#FF9F0A",
+      "voice": "am_liam"
+    },
+    {
+      "id": "nico",
+      "displayName": "Nico",
+      "color": "#5E5CE6",
+      "voice": "bm_daniel"
+    },
+    {
+      "id": "lena",
+      "displayName": "Lena",
+      "color": "#FF453A",
+      "voice": "af_river"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "alex-dm",
+      "type": "direct",
+      "participants": [
+        "alex"
+      ],
+      "title": "Alex"
+    },
+    {
+      "id": "mutuals",
+      "type": "group",
+      "participants": [
+        "nico",
+        "lena"
+      ],
+      "title": "Mutuals (No Drama)"
+    }
+  ],
+  "messages": [
+    {
+      "id": "m01",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "I found the playlist you made me in 2022.",
+      "revealAtMs": 600
+    },
+    {
+      "id": "m02",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "Delete it.",
+      "revealAtMs": 2400
+    },
+    {
+      "id": "m03",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "I can't. It's on every road trip I take.",
+      "revealAtMs": 3800,
+      "sound": "sad"
+    },
+    {
+      "id": "m04",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "That's a you problem.",
+      "revealAtMs": 5200
+    },
+    {
+      "id": "m05",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "It's been two years. I still skip the rain song.",
+      "revealAtMs": 6800,
+      "sound": "heartbeat"
+    },
+    {
+      "id": "m06",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "You skip it because it's the best one.",
+      "revealAtMs": 8600
+    },
+    {
+      "id": "m07",
+      "conversationId": "mutuals",
+      "senderId": "me",
+      "text": "Alex just texted me about the playlist. I'm not okay.",
+      "revealAtMs": 10400,
+      "sound": "send"
+    },
+    {
+      "id": "m08",
+      "conversationId": "mutuals",
+      "senderId": "nico",
+      "text": "You two are the same person honestly.",
+      "revealAtMs": 12000,
+      "sound": "receive"
+    },
+    {
+      "id": "m09",
+      "conversationId": "mutuals",
+      "senderId": "lena",
+      "text": "Invite them to the picnic. We'll all watch.",
+      "revealAtMs": 13600,
+      "sound": "ding"
+    },
+    {
+      "id": "m10",
+      "conversationId": "mutuals",
+      "senderId": "me",
+      "text": "Absolutely not.",
+      "revealAtMs": 15200
+    },
+    {
+      "id": "m11",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "So I'm guessing the picnic is a setup.",
+      "revealAtMs": 16800
+    },
+    {
+      "id": "m12",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "It's a setup.",
+      "revealAtMs": 18200,
+      "sound": "rizz"
+    },
+    {
+      "id": "m13",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "Then can we actually talk? Not the group chat kind.",
+      "revealAtMs": 19800
+    },
+    {
+      "id": "m14",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "Tomorrow. Coffee. No group chat.",
+      "revealAtMs": 21600
+    },
+    {
+      "id": "m15",
+      "conversationId": "alex-dm",
+      "senderId": "alex",
+      "text": "Deal. And keep the playlist. I still skip the rain song.",
+      "revealAtMs": 23200,
+      "sound": "heartbeat"
+    },
+    {
+      "id": "m16",
+      "conversationId": "alex-dm",
+      "senderId": "me",
+      "text": "You'd better.",
+      "revealAtMs": 25000
+    }
+  ],
+  "audio": {
+    "sfx": true,
+    "music": null,
+    "musicVolumeDb": -26
+  },
+  "narration": {
+    "enabled": true,
+    "speed": 1
+  },
+  "background": {
+    "video": "../../assets/backgrounds/vidssave.com Minecraft Parkour Gameplay - NO COPYRIGHT (4K QUALITY) 480p.mp4",
+    "dim": 0.2
+  },
+  "meta": {
+    "premise": "An ex texts about an old playlist, and the mutual friends try to push them back together.",
+    "genre": "relationship drama",
+    "tone": "bittersweet, funny",
+    "endingStyle": "open",
+    "language": "en"
+  }
+}

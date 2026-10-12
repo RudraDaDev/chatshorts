@@ -1,0 +1,61 @@
+{
+  "jobId": "job-20261012143225-9156a8",
+  "title": "Dad Found A Photo Of Me Holding A Fish",
+  "output": "/home/user/chatshorts/output/dad-found-a-photo-of-me-holding-a-fish-9156a8.mp4",
+  "durationSeconds": 43.5,
+  "resolution": "1080x1920",
+  "fps": 30,
+  "stages": [
+    {
+      "name": "encode",
+      "status": "done",
+      "durationMs": 65575
+    },
+    {
+      "name": "layout",
+      "status": "done",
+      "durationMs": 292
+    },
+    {
+      "name": "narrate",
+      "status": "done",
+      "durationMs": 50574
+    },
+    {
+      "name": "qa",
+      "status": "done",
+      "durationMs": 3207
+    },
+    {
+      "name": "render",
+      "status": "done",
+      "durationMs": 15862
+    },
+    {
+      "name": "validate",
+      "status": "done",
+      "durationMs": 3
+    }
+  ],
+  "totalStageMs": 135513,
+  "renderedStills": 155,
+  "frames": 1305,
+  "validation": {
+    "warnings": []
+  },
+  "qa": {
+    "ok": true,
+    "checks": 17
+  },
+  "api": [
+    {
+      "provider": "manual",
+      "model": null,
+      "calls": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "costUsd": 0
+    }
+  ],
+  "completedAt": "2026-10-12T14:34:40.801Z"
+}

@@ -1,7 +1,7 @@
 {
-  "jobId": "job-20261012141357-57509e",
+  "jobId": "job-20261012144058-7dff89",
   "title": "She Left Me On Read For Three Hours",
-  "output": "/home/user/chatshorts/output/she-left-me-on-read-for-three-hours-57509e.mp4",
+  "output": "/home/user/chatshorts/output/she-left-me-on-read-for-three-hours-7dff89.mp4",
   "durationSeconds": 57.2,
   "resolution": "1080x1920",
   "fps": 30,
@@ -9,36 +9,36 @@
     {
       "name": "encode",
       "status": "done",
-      "durationMs": 26955
+      "durationMs": 79862
     },
     {
       "name": "layout",
       "status": "done",
-      "durationMs": 194
+      "durationMs": 228
     },
     {
       "name": "narrate",
       "status": "done",
-      "durationMs": 65363
+      "durationMs": 616
     },
     {
       "name": "qa",
       "status": "done",
-      "durationMs": 1677
+      "durationMs": 3947
     },
     {
       "name": "render",
       "status": "done",
-      "durationMs": 11350
+      "durationMs": 15646
     },
     {
       "name": "validate",
       "status": "done",
-      "durationMs": 3
+      "durationMs": 4
     }
   ],
-  "totalStageMs": 105542,
-  "renderedStills": 122,
+  "totalStageMs": 100303,
+  "renderedStills": 148,
   "frames": 1716,
   "validation": {
     "warnings": []
@@ -57,5 +57,5 @@
       "costUsd": 0
     }
   ],
-  "completedAt": "2026-10-12T14:15:42.723Z"
+  "completedAt": "2026-10-12T14:42:38.966Z"
 }
